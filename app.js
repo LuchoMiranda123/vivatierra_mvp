@@ -519,6 +519,15 @@ const Router = {
         this.currentRoute = route;
         window.currentChatId = null;
 
+        // Cerrar sidebar móvil al navegar
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('mobile-sidebar-backdrop');
+        if (sidebar && backdrop && window.innerWidth < 768) {
+            sidebar.classList.remove('translate-x-0');
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        }
+
         document.querySelectorAll('.nav-item').forEach(el => {
             el.classList.remove('bg-orange-50', 'text-brand-orange');
             el.classList.add('text-gray-600');
@@ -1488,6 +1497,27 @@ const UI = {
         Store.data.settings.aiScheduleEnd = scheduleEnd;
         Store.save();
         alert('✅ Configuración IA guardada correctamente.');
+    },
+
+    // Toggle sidebar móvil
+    toggleMobileSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('mobile-sidebar-backdrop');
+        if (!sidebar || !backdrop) return;
+
+        const isOpen = sidebar.classList.contains('translate-x-0');
+        
+        if (isOpen) {
+            // Cerrar
+            sidebar.classList.remove('translate-x-0');
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        } else {
+            // Abrir
+            sidebar.classList.remove('hidden', '-translate-x-full');
+            sidebar.classList.add('flex', 'translate-x-0');
+            backdrop.classList.remove('hidden');
+        }
     }
 };
 
