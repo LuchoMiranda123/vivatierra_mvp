@@ -1,0 +1,187 @@
+/* ============================================================
+   VIVA TIERRA INMOBILIARIA – CRM MVP
+   Estilos personalizados (complemento de Tailwind CDN)
+   ============================================================ */
+
+/* --- RESET & GLOBALES --- */
+body {
+    background-color: #F3F4F6;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* --- SCROLLBAR OCULTA --- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* --- DRAG & DROP KANBAN --- */
+.kanban-card.dragging {
+    opacity: 0.5;
+    border: 2px dashed #F36C21;
+    transform: scale(0.95);
+}
+.kanban-column.drag-over {
+    background-color: #FFF0E5;
+    border-color: #F36C21;
+}
+.kanban-card {
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+/* --- ANIMACIONES --- */
+.page-transition { animation: fadeIn 0.3s ease-out; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+.slide-in-right { animation: slideInRight 0.25s ease-out; }
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.4; }
+}
+.pulse-dot { animation: pulse-dot 1.5s infinite; }
+
+/* --- BURBUJAS DE CHAT --- */
+.bubble-lead {
+    background-color: #FFFFFF;
+    color: #1F2937;
+    border: 1px solid #E5E7EB;
+    border-radius: 0 12px 12px 12px;
+}
+.bubble-me {
+    background-color: #F36C21;
+    color: white;
+    border-radius: 12px 0 12px 12px;
+}
+.bubble-ai {
+    background-color: #F3E8FF;
+    color: #6B21A8;
+    border: 1px solid #E9D5FF;
+    border-radius: 0 12px 12px 12px;
+}
+.bubble-system {
+    background-color: #FEF3C7;
+    color: #92400E;
+    border: 1px solid #FDE68A;
+    border-radius: 8px;
+    font-style: italic;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+/* --- CHIPS DE ETAPA --- */
+.chip-nuevo        { background: #F3E8FF; color: #7C3AED; border: 1px solid #E9D5FF; }
+.chip-calificado   { background: #DBEAFE; color: #2563EB; border: 1px solid #BFDBFE; }
+.chip-reservo      { background: #FEF3C7; color: #D97706; border: 1px solid #FDE68A; }
+.chip-cerrado      { background: #D1FAE5; color: #059669; border: 1px solid #A7F3D0; }
+.chip-sin-respuesta{ background: #FEE2E2; color: #DC2626; border: 1px solid #FECACA; }
+.chip-perdido      { background: #F3F4F6; color: #6B7280; border: 1px solid #E5E7EB; }
+
+/* --- MOBILE SAFE AREA --- */
+.pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+
+/* --- MODAL OVERLAY --- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    animation: fadeIn 0.2s ease-out;
+}
+.modal-content {
+    background: white;
+    border-radius: 1rem;
+    max-width: 28rem;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.3s ease-out;
+}
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- TYPING INDICATOR --- */
+.typing-indicator span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #9CA3AF;
+    border-radius: 50%;
+    margin: 0 2px;
+    animation: typing 1.4s infinite;
+}
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); }
+    30%           { transform: translateY(-6px); }
+}
+
+/* --- TOOLTIPS --- */
+.tooltip {
+    position: relative;
+}
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1F2937;
+    color: white;
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+.tooltip:hover::after { opacity: 1; }
+
+/* --- PROGRESS BARS ANIMADAS --- */
+.progress-bar-animated {
+    transition: width 1s ease-out;
+}
+
+/* --- FOCUS STATES ACCESIBILIDAD --- */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #F36C21;
+    outline-offset: 2px;
+}
+
+/* --- NOTAS INTERNAS --- */
+.note-card {
+    background: #FFFBEB;
+    border-left: 3px solid #F59E0B;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-size: 0.75rem;
+    color: #78350F;
+}
+
+/* --- SCROLLBAR CUSTOM (DESKTOP) --- */
+@media (min-width: 768px) {
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #D1D5DB;
+        border-radius: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #9CA3AF; }
+}
